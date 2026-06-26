@@ -1,0 +1,18 @@
+[project]
+name = "vapory"
+version = "0.1.0"
+description = "Photo-realistic 3D rendering with Python and POV-Ray"
+authors = [
+    {name = "Zulko",email = "https://github.com/Zulko"},
+]
+dependencies = []
+requires-python = ">=3.13"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
