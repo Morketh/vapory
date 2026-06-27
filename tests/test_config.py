@@ -1,4 +1,3 @@
-import pytest
 from vapory import config
 
 def test_povray_binary():

@@ -1,1 +1,6 @@
-__version__ = "0.1.2"
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("collective-cores")
+except PackageNotFoundError:
+    __version__ = "unknown"

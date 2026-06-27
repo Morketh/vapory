@@ -1,4 +1,3 @@
-import pytest
 from vapory.helpers import vectorize, format_if_necessary
 
 def test_vectorize():

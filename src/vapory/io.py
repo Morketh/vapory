@@ -34,10 +34,10 @@ def ppm_to_numpy(filename=None, buffer=None, byteorder='>'):
             buffer = f.read()
     try:
         header, width, height, maxval = re.search(
-            b"(^P\d\s(?:\s*#.*[\r\n])*"
-            b"(\d+)\s(?:\s*#.*[\r\n])*"
-            b"(\d+)\s(?:\s*#.*[\r\n])*"
-            b"(\d+)\s(?:\s*#.*[\r\n]\s)*)", buffer).groups()
+            rb"(^P\d\s(?:\s*#.*[\r\n])*"
+            rb"(\d+)\s(?:\s*#.*[\r\n])*"
+            rb"(\d+)\s(?:\s*#.*[\r\n])*"
+            rb"(\d+)\s(?:\s*#.*[\r\n]\s)*)", buffer).groups()
     except AttributeError:
         raise ValueError("Not a raw PPM/PGM file: '%s'" % filename)
 

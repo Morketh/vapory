@@ -1,11 +1,8 @@
 from unittest.mock import patch
 
-import pytest
 from vapory import (
-    Scene, Camera, Sphere, Box, LightSource, POVRayElement,
-    Background, Pigment, Finish, Texture
+    Scene, Camera, Sphere, LightSource, Background, Pigment, Texture
 )
-from vapory.helpers import vectorize
 
 def test_povray_element_str_simple():
     # Test that a simple element produces correct POV-Ray syntax
@@ -47,19 +44,16 @@ def test_scene_str():
     assert 'global_settings{' in out
 
 def test_scene_render(mocker):
-    # Mock render_povstring to check it gets correct arguments
     mock_render = mocker.patch('vapory.vapory.render_povstring')
     cam = Camera('perspective')
     scene = Scene(cam)
     scene.render(outfile='test.png', height=100, width=200)
     mock_render.assert_called_once()
-    # First arg should be str(scene)
     args = mock_render.call_args[0]
     assert args[0] == str(scene)
     assert args[1] == 'test.png'
     assert args[2] == 100
     assert args[3] == 200
-    # other defaults
     assert args[4] is None  # quality
     assert args[5] is None  # antialiasing
     assert args[6] is True  # remove_temp
@@ -67,6 +61,7 @@ def test_scene_render(mocker):
     assert args[8] is None  # tempfile
     assert args[9] is None  # includedirs
     assert args[10] is False # output_alpha
+    assert args[11] is False # use_custom_povray (default)
 
 def test_scene_auto_camera_angle():
     # When auto_camera_angle=True and width given, it should add a 'right' argument

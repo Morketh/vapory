@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import MagicMock, Mock, patch, mock_open
 from vapory.io import render_povstring, ppm_to_numpy
 

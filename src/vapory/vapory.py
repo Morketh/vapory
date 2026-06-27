@@ -1,10 +1,10 @@
 import webbrowser # <= to open the POVRay help
 from copy import deepcopy
 import re
-from .io import render_povstring
+from vapory.io import render_povstring
 import os
 
-from .helpers import WIKIREF, vectorize, format_if_necessary
+from vapory.helpers import WIKIREF, format_if_necessary
 
 class Scene:
     """ A scene contains Items and can be written to a file.
@@ -57,10 +57,10 @@ class Scene:
         return new
 
     def render(self, outfile=None, height=None, width=None,
-                     quality=None, antialiasing=None, remove_temp=True,
-                     auto_camera_angle=True, show_window=False, tempfile=None,
-                     includedirs=None, output_alpha=False, evaluate=True,
-                     use_custom_povray=False):
+                  quality=None, antialiasing=None, remove_temp=True,
+                  auto_camera_angle=True, show_window=False,
+                  tempfile=None, includedirs=None, output_alpha=False,
+                  evaluate=True, use_custom_povray=False):
 
         """ Renders the scene to a PNG, a numpy array, or the IPython Notebook.
 
@@ -93,8 +93,9 @@ class Scene:
 
         if evaluate:
             return render_povstring(str(self), outfile, height, width,
-                                    quality, antialiasing, remove_temp,
-                                    show_window, tempfile, use_custom_povray)
+                        quality, antialiasing, remove_temp,
+                        show_window, tempfile, includedirs,
+                        output_alpha, use_custom_povray)
         else:
             pov_file = os.path.splitext(outfile)[0] + '.pov'
             with open(pov_file, 'w+') as f:
