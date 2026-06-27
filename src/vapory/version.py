@@ -1,6 +1,6 @@
 from importlib.metadata import PackageNotFoundError, version
 
 try:
-    __version__ = version("collective-cores")
+    __version__ = version("Vapory")
 except PackageNotFoundError:
     __version__ = "unknown"
